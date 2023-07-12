@@ -2,9 +2,11 @@ import os
 
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
-
+import pyodbc as odbc
 app = Flask(__name__)
 
+con = odbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:5upducks.database.windows.net,1433;Database=5UPDucks;Uid=connorbell;Pwd=5upduck$;Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;')
+cursor = con.cursor()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -20,10 +22,13 @@ def index():
         # Perform further processing with the form data and resume file here
         
         return "Form submitted successfully!"
+   '''cursor.execute("SELECT * FROM dbo.demotable")
+
+   for row in cursor.fetchall():
+        print(row)'''
     
 #return render_template('index.html')
    return render_template('intern.html')
-
 
 @app.route('/favicon.ico')
 def favicon():
