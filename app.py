@@ -2,13 +2,21 @@ import os
 
 from flask import (Flask, redirect, render_template, request,
                    send_from_directory, url_for)
-
+import pyodbc as odbc
 app = Flask(__name__)
 
+con = odbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:5upducks.database.windows.net,1433;Database=5UPDucks;Uid=connorbell;Pwd=5upduck$;Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;')
+cursor = con.cursor()
 
 @app.route('/')
 def index():
    print('Request for index page received')
+
+   '''cursor.execute("SELECT * FROM dbo.demotable")
+
+   for row in cursor.fetchall():
+        print(row)'''
+
    return render_template('index.html')
 
 @app.route('/favicon.ico')
