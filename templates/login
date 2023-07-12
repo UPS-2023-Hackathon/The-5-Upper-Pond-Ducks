@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .login-form {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-input {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    .login-button {
+      padding: 10px 20px;
+      background-color: #FFB500; /* Instagram color */
+      color: #FFFFFF; /* Instagram text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .status {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .logged-in {
+      font-weight: bold;
+    }
+  </style>
+  <script>
+    function login(user) {
+      var loginForm = user.parentElement;
+      var username = loginForm.querySelector('.username-input').value;
+      var password = loginForm.querySelector('.password-input').value;
+      
+      // Perform login validation here
+      
+      if (username && password) {
+        user.nextElementSibling.style.display = 'block';
+        console.log(username + " has logged in.");
+      } else {
+        console.log("Please enter both username and password.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Login</h1>
+
+  <div class="login-form">
+    <h2>UPSers Login</h2>
+    <input type="text" class="login-input username-input" placeholder="Username">
+    <input type="password" class="login-input password-input" placeholder="Password">
+    <button class="login-button" onclick="login(this)">Login</button>
+    <span class="status">UPSers is logged in.</span>
+  </div>
+
+  <div class="login-form">
+    <h2>Applicants Login</h2>
+    <input type="text" class="login-input username-input" placeholder="Username">
+    <input type="password" class="login-input password-input" placeholder="Password">
+    <button class="login-button" onclick="login(this)">Login</button>
+    <span class="status">Applicants is logged in.</span>
+  </div>
+
+</body>
+</html>
