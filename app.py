@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 con = odbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:5upducks.database.windows.net,1433;Database=5UPDucks;Uid=connorbell;Pwd=5upduck$;Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;')
 cursor = con.cursor()
-
+'''
 @app.route('/', methods=['GET', 'POST'])
 def index():
    #print('Request for index page received')
@@ -23,13 +23,42 @@ def index():
         # Perform further processing with the form data and resume file here
         
         return "Form submitted successfully!"
-   '''cursor.execute("SELECT * FROM dbo.demotable")
+   cursor.execute("SELECT * FROM dbo.demotable")
 
    for row in cursor.fetchall():
-        print(row)'''
+        print(row)
     
 #return render_template('index.html')
    return render_template('intern.html')
+
+
+@app.route('/', methods=['GET', 'POST'])
+def manager():
+    if request.method == 'POST':
+            fname = request.form['fname']
+            lname = request.form['lname']
+            email = request.form['email']
+            Department = request.files['Department'] 
+            return "Form submitted successfully!"
+    return render_template('manager.html')
+'''
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+    return render_template('login.html')
+    
+    # Perform login verification here
+    # Replace the following code with your login verification logic
+    #if username == 'admin' and password == 'password' and button_type == "login-button1":
+        # Set session or cookie to remember the logged-in state if needed
+       # return redirect(url_for('home'))
+    #else if username == 'admin' and password == 'password' and button_type == "login-button2":
+
+    #else:
+        #return render_template('login.html', error='Invalid username or password')
+
 
 @app.route('/favicon.ico')
 def favicon():
@@ -47,7 +76,10 @@ def hello():
    else:
        print('Request for hello page received with no name or blank name -- redirecting')
        return redirect(url_for('index'))
+ 
        """
+       
+
 
 
 if __name__ == '__main__':
