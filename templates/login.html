@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Internship and Co-ops</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .login-form {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-input {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    .login-button {
+      padding: 10px 20px;
+      background-color: #FFB500; /* Instagram color */
+      color: #FFFFFF; /* Instagram text color */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .status {
+      margin-top: 10px;
+      display: none;
+    }
+
+    .logged-in {
+      font-weight: bold;
+    }
+
+    .instagram-link {
+      padding: 10px 20px;
+      background-color: #E4405F; /* Instagram color */
+      color: #FFFFFF; /* Instagram text color */
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .column {
+      float: left;
+      width: 33.33%;
+      padding: 5px;
+    }
+
+    /* Clearfix (clear floats) */
+    .row::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+    .column img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+  <script>
+    function login(user) {
+      var loginForm = user.parentElement;
+      var username = loginForm.querySelector('.username-input').value;
+      var password = loginForm.querySelector('.password-input').value;
+      
+      // Perform login validation here
+      
+      if (username && password) {
+        user.nextElementSibling.style.display = 'block';
+        console.log(username + " has logged in.");
+      } else {
+        console.log("Please enter both username and password.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Student Internship and Co-ops</h1>
+
+  <hr style="height: 3px; background-color: #351C15">
+
+  <div class="login-form">
+    <h2>UPSers Login</h2>
+    <p>Login</p>
+    <input type="text" class="login-input username-input" placeholder="Username">
+    <input type="password" class="login-input password-input" placeholder="Password">
+    <button class="login-button" onclick="login(this)">Login</button>
+    <span class="status">UPSers is logged in.</span>
+  </div>
+
+  <div class="login-form">
+    <h2>Applicants Login</h2>
+    <p>Login</p>
+    <input type="text" class="login-input username-input" placeholder="Username">
+    <input type="password" class="login-input password-input" placeholder="Password">
+    <button class="login-button" onclick="login(this)">Login</button>
+    <span class="status">Applicants is logged in.</span>
+  </div>
+
+  <br>
+
+  <p>You’re ready to take your next step—to realize your vision of professional success, in whatever way you define it. At UPS, you’ll have the freedom and support to grow, gain experience, and keep climbing higher. With paid internships and co-ops in career areas ranging from engineering and IT to special programs such as our Flightpath internship for aspiring pilots, the opportunities to take your skills and interests further are nearly endless here. We also offer INROADS, an internship program designed to develop and place talented minority youth in business and industry and prepare them for corporate and community leadership.</p>
+
+  <p>Want to keep learning while you work? UPS can help! Learn more about the different ways we can support your educational pursuits on our dedicated learning and development page.</p>
+
+  <div style="display: flex; justify-content: center;">
+    <a class="instagram-link" href="https://www.instagram.com/ups/" target="_blank">Follow Us on Instagram</a>
+  </div>
+
+  <br>
+
+  <div class="row">
+    <div class="column">
+      <img src="https://butterandbreaddotcom.files.wordpress.com/2023/07/screen-shot-2023-07-12-at-3.50.22-pm-1.png" alt="Image 1">
+    </div>
+    <div class="column">
+      <img src="https://butterandbreaddotcom.files.wordpress.com/2023/07/screen-shot-2023-07-12-at-3.50.28-pm-1.png?w=468" alt="Image 2">
+    </div>
+    <div class="column">
+      <img src="https://butterandbreaddotcom.files.wordpress.com/2023/07/screen-shot-2023-07-12-at-3.50.35-pm.png?w=464" alt="Image 3">
+    </div>
+  </div>
+</body>
+</html>
