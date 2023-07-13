@@ -30,7 +30,15 @@ def manager():
             cloud = request.form.get('Depart9')
             #Department = request.files['resume'] 
             #return "Form submitted successfully!"
-    return render_template('display.html')
+            cursor.execute('EXEC dbo.createManager @username=?, @password=?, @email=?, @first=?, @last=?, @SDG=?', (username, password, email, fname, lname, sdg))
+            try:
+               rows = cursor.fetchall()
+               if len(rows) != 0:
+                  print(rows)
+                  return render_template('display.html')
+            finally:
+                return render_template('manager.html')
+    return render_template('manager.html')
     
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -82,23 +90,23 @@ def intern():
          hardware = request.form.get('Depart7')
          ai = request.form.get('Depart8')
          cloud = request.form.get('Depart9')
+         comment = request.form['comment']
 
         
         # Save the resume file
          resume.save('static/' + resume.filename)
         
-        # Perform further processing with the form data and resume file here
-         return redirect(url_for('success'))
-        #return "Form submitted successfully!"
-   # cursor.execute("SELECT * FROM dbo.demotable")
-
-   # for row in cursor.fetchall():
-   #      print(row)
-    
-#return render_template('index.html')
-
-
+         cursor.execute('EXEC dbo.createIntern @username=?, @password=?, @email=?, @first=?, @last=?, @comment=?, @pdf=?', (username, password, email, fname, lname, comment, resume))
+         try:
+            rows = cursor.fetchall()
+            if len(rows) != 0:
+               print(rows)
+               return render_template('ThankYouPage.html')
+         finally:
+               return render_template('intern.html')
    return render_template('intern.html')
+        # Perform further processing with the form data and resume file here
+        # return redirect(url_for('success'))
 
 @app.route('/ThankYouPage.html')
 def success():
@@ -109,7 +117,8 @@ def display():
     # Connect to the database and execute the query
     #conn = sqlite3.connect('your_database.db')
     #cursor = conn.cursor()
-    cursor.execute('select * from table')
+    cursor.execute('EXEC dbo.getBestManagerFit @managerID=?', (id))
+
     data = cursor.fetchall()
 
     # Render the HTML template and pass the data
