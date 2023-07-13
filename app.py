@@ -18,16 +18,16 @@ def manager():
             fname = request.form['fname']
             lname = request.form['lname']
             email = request.form['email']
-            # sdg = request.form['sdg']
-            # dds= request.form['Depart1']
-            # software= request.form['Depart2']
-            # network= request.form['Depart3']
-            # dev= request.form['Depart4']
-            # admin= request.form['Depart5']
-            # ds= request.form['Depart6']
-            # hardware= request.form['Depart7']
-            # ai= request.form['Depart8']
-            # cloud= request.form['Depart9']
+            sdg = request.form['sdg']
+            dds = request.form.get('Depart1')
+            software = request.form.get('Depart2')
+            network = request.form.get('Depart3')
+            dev = request.form.get('Depart4')
+            admin = request.form.get('Depart5')
+            ds = request.form.get('Depart6')
+            hardware = request.form.get('Depart7')
+            ai = request.form.get('Depart8')
+            cloud = request.form.get('Depart9')
             #Department = request.files['resume'] 
             #return "Form submitted successfully!"
     return render_template('display.html')
@@ -69,25 +69,26 @@ def intern():
    #     return render_template('login.html')
    #print('Request for index page received')
    if request.method == 'POST':
-        fname = request.form['fname']
-        lname = request.form['lname']
-        email = request.form['email']
-        resume = request.files['resume']
-      #   dds= request.form['Depart1']
-      #   software= request.form['Depart2']
-      #   network= request.form['Depart3']
-      #   dev= request.form['Depart4']
-      #   admin= request.form['Depart5']
-      #   ds= request.form['Depart6']
-      #   hardware= request.form['Depart7']
-      #   ai= request.form['Depart8']
-      #   cloud= request.form['Depart9']
+         fname = request.form['fname']
+         lname = request.form['lname']
+         email = request.form['email']
+         resume = request.files['resume']
+         dds = request.form.get('Depart1')
+         software = request.form.get('Depart2')
+         network = request.form.get('Depart3')
+         dev = request.form.get('Depart4')
+         admin = request.form.get('Depart5')
+         ds = request.form.get('Depart6')
+         hardware = request.form.get('Depart7')
+         ai = request.form.get('Depart8')
+         cloud = request.form.get('Depart9')
+
         
         # Save the resume file
-        resume.save('static/' + resume.filename)
+         resume.save('static/' + resume.filename)
         
         # Perform further processing with the form data and resume file here
-        return redirect(url_for('success'))
+         return redirect(url_for('success'))
         #return "Form submitted successfully!"
    # cursor.execute("SELECT * FROM dbo.demotable")
 
