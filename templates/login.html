@@ -105,11 +105,6 @@ body {
       }
     }
   </style>
-  <form method="POST" action="/">
-  <input type="text" name="username" placeholder="Username" required><br>
-  <input type="password" name="password" placeholder="Password" required><br>
-  <button type="submit">Login</button>
-</form>
 </head>
 <body>
   <h1>Student Internship and Co-ops</h1>
@@ -118,22 +113,28 @@ body {
 
   <div class="login-sections">
     <div class="login-form">
-      <h2>UPSers Login</h2>
+      <h2>Login</h2>
+      <form method="POST" action="/">
+        <input type="text" class="login-input username-input" name="username" placeholder="Username" required><br>
+        <input type="password" class="login-input password-input" name="password" placeholder="Password" required><br>
+        <button class="login-button" type="submit">Login</button>
+      </form>
+      <!-- <h2>UPSers Login</h2>
       <p>Login</p>
       <input type="text" class="login-input username-input" placeholder="Username">
       <input type="password" class="login-input password-input" placeholder="Password">
       <button class="login-button" onclick="login(this)">Login</button>
-      <span class="status">UPSers is logged in.</span>
+      <span class="status">UPSers is logged in.</span> -->
     </div>
 
-    <div class="login-form">
+    <!-- <div class="login-form">
       <h2>Applicants Login</h2>
       <p>Login</p>
       <input type="text" class="login-input username-input" placeholder="Username">
       <input type="password" class="login-input password-input" placeholder="Password">
       <button class="login-button" onclick="login(this)">Login</button>
       <span class="status">Applicants is logged in.</span>
-    </div>
+    </div> -->
   </div>
 
   <p>You’re ready to take your next step—to realize your vision of professional success, in whatever way you define it. At UPS, you’ll have the freedom and support to grow, gain experience, and keep climbing higher. With paid internships and co-ops in career areas ranging from engineering and IT to special programs such as our Flightpath internship for aspiring pilots, the opportunities to take your skills and interests further are nearly endless here. We also offer INROADS, an internship program designed to develop and place talented minority youth in business and industry and prepare them for corporate and community leadership.</p>
