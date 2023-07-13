@@ -51,20 +51,35 @@ def intern():
         lname = request.form['lname']
         email = request.form['email']
         resume = request.files['resume']
+        dds= request.form['Depart1']
+        software= request.form['Depart2']
+        network= request.form['Depart3']
+        dev= request.form['Depart4']
+        admin= request.form['Depart5']
+        ds= request.form['Depart6']
+        hardware= request.form['Depart7']
+        cloud= request.form['Depart8']
+
         
         # Save the resume file
-        resume.save(resume.filename)
+        resume.save('static/' + resume.filename)
         
         # Perform further processing with the form data and resume file here
-        
-        return "Form submitted successfully!"
+        return redirect(url_for('sucess'))
+        #return "Form submitted successfully!"
    # cursor.execute("SELECT * FROM dbo.demotable")
 
    # for row in cursor.fetchall():
    #      print(row)
     
 #return render_template('index.html')
+
+
    return render_template('intern.html')
+
+@app.route('/ThankYouPage.html')
+def success():
+    return render_template('ThankYouPage.html')
 
 @app.route('/manager', methods=['GET', 'POST'])
 def manager():
@@ -77,6 +92,20 @@ def manager():
             Department = request.files['Department'] 
             return "Form submitted successfully!"
     return render_template('manager.html')
+
+    # Your other routes and code
+
+@app.route('/display')
+def display():
+    # Connect to the database and execute the query
+    #conn = sqlite3.connect('your_database.db')
+    #cursor = conn.cursor()
+    cursor.execute('EXEC dbo.getBestManagerFit @managerID=4')
+    cursor.execute('select * from #temp')
+    data = cursor.fetchall()
+
+    # Render the HTML template and pass the data
+    return render_template('display.html', data=data)
     
     # Perform login verification here
     # Replace the following code with your login verification logic
@@ -107,6 +136,7 @@ def hello():
        return redirect(url_for('index'))
  
        """
+# Your other routes and code
 
 if __name__ == '__main__':
    app.run()
