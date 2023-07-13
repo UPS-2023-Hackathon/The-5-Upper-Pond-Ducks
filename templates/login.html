@@ -105,22 +105,11 @@ body {
       }
     }
   </style>
-  <script>
-    function login(user) {
-      var loginForm = user.parentElement;
-      var username = loginForm.querySelector('.username-input').value;
-      var password = loginForm.querySelector('.password-input').value;
-      
-      // Perform login validation here
-      
-      if (username && password) {
-        user.nextElementSibling.style.display = 'block';
-        console.log(username + " has logged in.");
-      } else {
-        console.log("Please enter both username and password.");
-      }
-    }
-  </script>
+  <form method="POST" action="/">
+  <input type="text" name="username" placeholder="Username" required><br>
+  <input type="password" name="password" placeholder="Password" required><br>
+  <button type="submit">Login</button>
+</form>
 </head>
 <body>
   <h1>Student Internship and Co-ops</h1>

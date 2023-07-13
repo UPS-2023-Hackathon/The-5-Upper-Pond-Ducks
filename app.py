@@ -16,22 +16,29 @@ def index():
       if request.method == 'POST':
          username = request.form['username']
          password = request.form['password']
-         cursor.callproc('dbo.InternLogin', [username,password])
+
+         cursor.execute('EXEC dbo.InternLogin @username=?, @password=?', (username, password))
          isIntern = False
-         #cursor.execute("SELECT * FROM dbo.demotable")
-         for row in cursor.fetchall():
-            print(row)
+         rows = cursor.fetchall()
+         if len(rows) == 0:
+            return render_template('login.html')
+         else:
+            print(rows)
             isIntern = True
             # isAuth = True
             return render_template('intern.html')
          
+         cursor.execute('EXEC dbo.InternLogin @username=?, @password=?', (username, password))
          isManager = False
-         cursor.callproc('dbo.ManagerLogin', [username,password])
-         for row in cursor.fetchall():
-            print(row)
+         rows = cursor.fetchall()
+         if len(rows) == 0:
+            return render_template('login.html')
+         else:
+            print(rows)
             isManager = True
             # isAuth = True
             return render_template('manager.html')
+
       return render_template('login.html')
     
 

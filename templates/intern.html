@@ -1,155 +1,250 @@
-<!doctype html>
-    <head>
+<!DOCTYPE html>
+<html>
+<head>
     <title>Resume Uploader</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    </head>
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .left {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .right {
+            flex: 1;
+            padding-left: 20px;
+            text-align: right;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            color: #351C15;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="file"],
+        form textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        form input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #FFB500;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .interests-container {
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .interests-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .interests-container div {
+            margin-bottom: 10px;
+        }
+
+        .interests-container label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .interests-container select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
 <body>
-    <h1> Intern Portal </h1>
-    <h2>Personal Information</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <label for="name">First Name:</label>
-        <input type="text" name="fname" required><br>
+    <h1>Intern Portal</h1>
+    <div class="container">
 
-        <label for="name">Last Name:</label>
-        <input type="text" name="lname" required><br>
-        
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br>
+        <div class="left">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1718px-United_Parcel_Service_logo_2014.svg.png" alt="UPS Logo" width="150" length = "150" align = left>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h2>Personal Information</h2>
+            <form method="POST" enctype="multipart/form-data">
+                <label for="fname">First Name:</label>
+                <input type="text" id="fname" name="fname" required>
 
-        <h4> Please Upload your Updated Resume</h4>
-        <label for="resume">Resume:</label><br>
-        <input type="file" name="resume" required><br>
-        
-        
-        <h2> Personal Interest:</h2>
-        <h7><em> From the Listed Department, Please pick your Interest 
-             From Most Interested to Least Interested
-        </em></h7>
-        
-        <div>
-            <label for="Depart1">Database (DDS)</label>
-            <select name="Depart1" required>
+                <label for="lname">Last Name:</label>
+                <input type="text" id="lname" name="lname" required>
 
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <h4>Please upload your updated resume:</h4>
+                <label for="resume">Resume:</label>
+                <input type="file" id="resume" name="resume" required>
+                <div class="mb-3">
+                    <br>
+                    <label for="comments" class="form-label">Comments:</label>
+                    <textarea class="form-control" id="comments" rows="3"></textarea>
+                </div>
+                <input type="submit" class="btn btn-warning"  color = "FFB500" value="Submit">                
+            </form>
+
         </div>
 
-        <div>
-            <label for="Depart2">Software Development</label>
-            <select name="Depart2" required>
+        <div class="right">
+            <div class="interests-container">
 
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select>
-        </div>
+                <h2>Personal Interests</h2>
+                <p><em>From the listed departments, please rank your interests from most interested to least interested:</em></p>
 
-        <div>
-            <label for="Depart3">Networking (IT)</label>
-            <select name="Depart3" required>
+                <div>
+                    <label for="Depart1">Database (DDS)</label>
+                    <select name="Depart1" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
 
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select>
-        </div>
+                <div>
+                    <label for="Depart2">Software Development</label>
+                    <select name="Depart2" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
 
-        <div>
-            <label for="Depart4">DevOps </label>
-            <select name="Depart4" required>
+                <div>
+                    <label for="Depart3">Networking (IT)</label>
+                    <select name="Depart3" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
 
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select>
-        </div>
+                <div>
+                    <label for="Depart4">DevOps</label>
+                    <select name="Depart4" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
 
-        <div>
-            <label for="Depart5">Administration</label>
-            <select name="Depart5" required>
-
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select>
-        </div>
-
-        <div>
-            <label for="Depart6">Data Science</label>
-            <select name="Depart6" required>
-
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select>
-        </div>
-
-        <div>
-            <label for="Depart7">Hardware Maintaince (IT)</label>
-            <select name="Depart7" required>
-
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="Depart7">Cloud Computing</label>
-            <select name="Depart7" required>
-
-                <option value="6">Very Interested</option>
-                <option value="5">Highly Interested</option>
-                <option value="4">Interested</option>
-                <option value="3">Highly Neutral</option>
-                <option value="2">Neutral</option>
-                <option value="1">Less Interested</option>
-                <option value="0">Not Interested</option>
-            </select><br>
-        </div><br>
-       <input type="submit" class="btn btn-outline-success" value="Submit">
-        
-    </form>
-
-    <div class="mb-3">
-        <label for="Comments" class="form-label">Comments</label>
-        <textarea class="form-control" id="Comments" rows="3"></textarea>
-      </div>
-    <main>
-       <!--
-          -->
-
-     </main>
-</body>
-</html>
+                <div>
+                    <label for="Depart5">Administration</label>
+                    <select name="Depart5" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Depart6">Data Science</label>
+                    <select name="Depart6" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="Depart7">Hardware Maintenance (IT)</label>
+                    <select name="Depart7" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="Depart8">Cloud Computing</label>
+                    <select name="Depart8" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
+                </div>
+                </div>
+                </div>
+                </div>
+                
+                <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
+                </body>
+                </html>  
