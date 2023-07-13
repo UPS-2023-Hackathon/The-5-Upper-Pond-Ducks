@@ -12,7 +12,8 @@ cursor = con.cursor()
 def index():
    #print('Request for index page received')
    if request.method == 'POST':
-        name = request.form['name']
+        fname = request.form['fname']
+        lname = request.form['lname']
         email = request.form['email']
         resume = request.files['resume']
         

@@ -5,20 +5,149 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     </head>
 <body>
-    <h1>Resume Uploader</h1>
+    <h1> Intern Portal </h1>
+    <h2>Personal Information</h2>
     <form method="POST" enctype="multipart/form-data">
-        <label for="name">Name:</label>
-        <input type="text" name="name" required><br>
+        <label for="name">First Name:</label>
+        <input type="text" name="fname" required><br>
+
+        <label for="name">Last Name:</label>
+        <input type="text" name="lname" required><br>
         
         <label for="email">Email:</label>
         <input type="email" name="email" required><br>
-        
-        <label for="resume">Upload Resume:</label>
+
+        <h4> Please Upload your Updated Resume</h4>
+        <label for="resume">Resume:</label><br>
         <input type="file" name="resume" required><br>
         
-        <input type="submit" value="Submit">
+        
+        <h2> Personal Interest:</h2>
+        <h7><em> From the Listed Department, Please pick your Interest 
+             From Most Interested to Least Interested
+        </em></h7>
+        
+        <div>
+            <label for="Depart1">Database (DDS)</label>
+            <select name="Depart1" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="Depart2">Software Development</label>
+            <select name="Depart2" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="Depart3">Networking (IT)</label>
+            <select name="Depart3" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="Depart4">DevOps </label>
+            <select name="Depart4" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="Depart5">Administration</label>
+            <select name="Depart5" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="Depart6">Data Science</label>
+            <select name="Depart6" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="Depart7">Hardware Maintaince (IT)</label>
+            <select name="Depart7" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="Depart7">Cloud Computing</label>
+            <select name="Depart7" required>
+
+                <option value="6">Very Interested</option>
+                <option value="5">Highly Interested</option>
+                <option value="4">Interested</option>
+                <option value="3">Highly Neutral</option>
+                <option value="2">Neutral</option>
+                <option value="1">Less Interested</option>
+                <option value="0">Not Interested</option>
+            </select><br>
+        </div><br>
+       <input type="submit" class="btn btn-outline-success" value="Submit">
+        
     </form>
+
+    <div class="mb-3">
+        <label for="Comments" class="form-label">Comments</label>
+        <textarea class="form-control" id="Comments" rows="3"></textarea>
+      </div>
     <main>
+       <!--
         <div class="px-4 py-3 my-2 text-center">
             <img class="d-block mx-auto mb-4" src="{{ url_for('static', filename='images/azure-icon.svg') }}" alt="Azure Logo" width="192" height="192"/>
             <!- <img  src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> 
@@ -28,6 +157,8 @@
             </p>
             <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg px-4 gap-3">Back home</a>
           </div>
+          -->
+
      </main>
 </body>
 </html>
