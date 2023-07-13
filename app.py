@@ -7,9 +7,38 @@ app = Flask(__name__)
 
 con = odbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:5upducks.database.windows.net,1433;Database=5UPDucks;Uid=connorbell;Pwd=5upduck$;Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;')
 cursor = con.cursor()
-'''
+
+# isAuth = False
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+   #  if isAuth == False:
+      if request.method == 'POST':
+         username = request.form['username']
+         password = request.form['password']
+         cursor.callproc('dbo.InternLogin', [username,password])
+         isIntern = False
+         #cursor.execute("SELECT * FROM dbo.demotable")
+         for row in cursor.fetchall():
+            print(row)
+            isIntern = True
+            # isAuth = True
+            return render_template('intern.html')
+         
+         isManager = False
+         cursor.callproc('dbo.ManagerLogin', [username,password])
+         for row in cursor.fetchall():
+            print(row)
+            isManager = True
+            # isAuth = True
+            return render_template('manager.html')
+      return render_template('login.html')
+    
+
+@app.route('/intern', methods=['GET', 'POST'])
+def intern():
+   # if isAuth == False:
+   #     return render_template('login.html')
    #print('Request for index page received')
    if request.method == 'POST':
         fname = request.form['fname']
@@ -23,17 +52,18 @@ def index():
         # Perform further processing with the form data and resume file here
         
         return "Form submitted successfully!"
-   cursor.execute("SELECT * FROM dbo.demotable")
+   # cursor.execute("SELECT * FROM dbo.demotable")
 
-   for row in cursor.fetchall():
-        print(row)
+   # for row in cursor.fetchall():
+   #      print(row)
     
 #return render_template('index.html')
    return render_template('intern.html')
 
-
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/manager', methods=['GET', 'POST'])
 def manager():
+   #  if isAuth == False:
+   #     return render_template('login.html')
     if request.method == 'POST':
             fname = request.form['fname']
             lname = request.form['lname']
@@ -41,13 +71,6 @@ def manager():
             Department = request.files['Department'] 
             return "Form submitted successfully!"
     return render_template('manager.html')
-'''
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-    return render_template('login.html')
     
     # Perform login verification here
     # Replace the following code with your login verification logic
@@ -60,10 +83,10 @@ def index():
         #return render_template('login.html', error='Invalid username or password')
 
 
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+# @app.route('/favicon.ico')
+# def favicon():
+#     return send_from_directory(os.path.join(app.root_path, 'static'),
+#                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 #@app.route('/hello', methods=['POST'])
 """
@@ -78,9 +101,6 @@ def hello():
        return redirect(url_for('index'))
  
        """
-       
-
-
 
 if __name__ == '__main__':
    app.run()
