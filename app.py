@@ -19,26 +19,25 @@ def index():
 
          cursor.execute('EXEC dbo.InternLogin @username=?, @password=?', (username, password))
          isIntern = False
-         rows = cursor.fetchall()
-         if len(rows) == 0:
-            return render_template('login.html')
-         else:
-            print(rows)
-            isIntern = True
-            # isAuth = True
-            return render_template('intern.html')
-         
-         cursor.execute('EXEC dbo.InternLogin @username=?, @password=?', (username, password))
-         isManager = False
-         rows = cursor.fetchall()
-         if len(rows) == 0:
-            return render_template('login.html')
-         else:
-            print(rows)
-            isManager = True
-            # isAuth = True
-            return render_template('manager.html')
-
+         try:
+            rows = cursor.fetchall()
+            if len(rows) != 0:
+               print(rows)
+               isIntern = True
+               # isAuth = True
+               return render_template('intern.html')
+         finally:
+            cursor.execute('EXEC dbo.ManagerLogin @username=?, @password=?', (username, password))
+            isManager = False
+            try:
+               rows2 = cursor.fetchall()
+               if len(rows2) != 0:
+                  print(rows2)
+                  isManager = True
+                  # isAuth = True
+                  return render_template('manager.html')
+            except:
+               print("No rows2 in result, no valid logins")
       return render_template('login.html')
     
 
