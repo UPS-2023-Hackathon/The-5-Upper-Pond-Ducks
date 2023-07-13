@@ -1,57 +1,51 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-  <title>Data Display</title>
-</head>
-<body>
-  <h1>Data Display</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for row in data %}
-      <tr>
-        <td>{{ row.id }}</td>
-        <td>{{ row.name }}</td>
-        <td>{{ row.email }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html>
 <head>
+  <title>MatchMaking</title>
   <style>
-    ul.demo {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
+    body {
+      text-align: center;
     }
-    </style>
+
+    h1 {
+      font-size: 50px;
+    }
+
+    hr {
+      border: none;
+      border-top: 3px solid #FFB500;
+    }
+  </style>
 </head>
 <body>
   <div class="left">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1718px-United_Parcel_Service_logo_2014.svg.png" alt="UPS Logo" width="70" height="70" align="left">
   </div>
+
+  <h1>Manager's Match With Candidates</h1>
+
+  <hr>
+
+  <!-- Additional content here -->
+  <h2>Here is the list of Top Candidates from the skill set you are looking for</h2>
+
+  <div id="chart-container"></div>
   <br>
   <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  
   <ul>
     {{chart_data}}
   </ul>
-  <ul>
+  <!-- <ul>
     {% for item in chart_data %}
         <li>{{item}}</li>
     {% endfor %}
-    </ul>
+    </ul> -->
 </body>
 </html>
