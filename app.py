@@ -98,8 +98,7 @@ def display():
     # Connect to the database and execute the query
     #conn = sqlite3.connect('your_database.db')
     #cursor = conn.cursor()
-    cursor.execute('EXEC dbo.getBestManagerFit @managerID=4')
-    cursor.execute('select * from #temp')
+    cursor.execute('select * from table')
     data = cursor.fetchall()
 
     # Render the HTML template and pass the data
@@ -138,3 +137,4 @@ def hello():
 
 if __name__ == '__main__':
    app.run()
+
