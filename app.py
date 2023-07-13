@@ -52,8 +52,8 @@ def manager():
                   print(rows)
                   return render_template('display.html')
             finally:
-                return render_template('manager.html')
-    return render_template('manager.html')
+                return render_template('display.html')
+    return render_template('display.html')
     
 @app.route('/', methods=['GET', 'POST'])
 def index():
