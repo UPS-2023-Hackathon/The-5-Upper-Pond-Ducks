@@ -95,10 +95,6 @@
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <a class="active" href="managerTop5.html">Results</a>
-        <a href="manager.html">Form</a>
-    </nav>
     <h1>Manager Portal</h1>
     <div class="container">
 
@@ -127,16 +123,7 @@
 
                 <label for="sdg">SDG:</label>
                 <input type="text" required>
-                <input type="submit" class="btn btn-warning"  color = "FFB500" value="Submit">                
-            </form>
-
-        </div>
-
-        <div class="right">
-            <div class="interests-container">
-
-                <h2>Preferences</h2>
-                <p><em>From the listed departments, please rank your interests from most interested to least interested:</em></p>
+                <input type="submit" class="btn btn-warning"  color = "FFB500" value="Submit">
 
                 <div>
                     <label for="Depart1">Database (DDS)</label>
@@ -226,9 +213,8 @@
                         <option value="0">Not Interested</option>
                     </select>
                 </div>
-                
                 <div>
-                    <label for="Depart8">Cloud Computing</label>
+                    <label for="Depart8">AI</label>
                     <select name="Depart8" required>
                         <option value="6">Very Interested</option>
                         <option value="5">Highly Interested</option>
@@ -239,9 +225,32 @@
                         <option value="0">Not Interested</option>
                     </select>
                 </div>
+                <div>
+                    <label for="Depart9">Cloud Computing</label>
+                    <select name="Depart9" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
                 </div>
-                </div>
-                </div>
+            </form>
+
+        </div>
+
+        <div class="right">
+            <div class="interests-container">
+
+                <h2>Preferences</h2>
+                <p><em>From the listed departments, please rank your interests from most interested to least interested:</em></p>
+
+
+            </div>
+        </div>
+    </div>
                 
                 <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
                 </body>
