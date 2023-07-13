@@ -64,7 +64,7 @@ def intern():
    #      print(row)
     
 #return render_template('index.html')
-   return render_template('intern.html')
+   return render_template('ThankYouPage.html')
 
 @app.route('/manager', methods=['GET', 'POST'])
 def manager():
