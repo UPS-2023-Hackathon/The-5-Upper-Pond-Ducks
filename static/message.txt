@@ -247,7 +247,7 @@ body {
    }
 
 
-  .right-side {
+  !-- .right-side {
      width: 30%;
      text-align: left;
    }

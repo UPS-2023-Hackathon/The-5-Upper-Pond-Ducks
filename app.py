@@ -99,9 +99,16 @@ def intern():
    #print('Request for index page received')
    if request.method == 'POST':
          fname = request.form['fname']
+         print("fname:", fname)
+
          lname = request.form['lname']
+         print("lname:", lname)
+
          email = request.form['email']
-         resume = request.files['resume']
+         print("email:", email)
+
+         #resume = request.files['resume']
+         #print("resume:", resume)
          # dds = request.form.get('Depart1')
          # software = request.form.get('Depart2')
          # network = request.form.get('Depart3')
@@ -112,21 +119,29 @@ def intern():
          # ai = request.form.get('Depart8')
          # cloud = request.form.get('Depart9')
          dds = int(request.form.get('Depart1'))
+         print('1')
          software = int(request.form.get('Depart2'))
+         print('2')
          network = int(request.form.get('Depart3'))
+         print('3')
          dev = int(request.form.get('Depart4'))
+         print('4')
          admin = int(request.form.get('Depart5'))
-         ds = int(request.form.get('Depart6'))
+         print('5')
+         devOps = int(request.form.get('Depart6'))
+         print('6')
          hardware = int(request.form.get('Depart7'))
+         print('7')
          ai = int(request.form.get('Depart8'))
+         print('8')
          cloud = int(request.form.get('Depart9'))
-         comment = request.form['comment']
-
+         print('9')
+         comment = 'comment'
         
         # Save the resume file
-         resume.save('static/' + resume.filename)
+         # resume.save('static/' + resume.filename)
         
-         cursor.execute('EXECUTE [dbo].[createIntern] @username=?,@password=?,@email=?,@first=?,@last=?,@DB=?,@dev=?,@net=?,@devops=?,@admin=?,@data=?,@hardware=?,@ai=?,@cloud=?,@comment=?,@pdf=?', (usernameGlobal, passwordGlobal, email, fname, lname, comment, resume))
+         cursor.execute('EXECUTE [dbo].[createIntern] @username=?,@password=?,@email=?,@first=?,@last=?,@DB=?,@dev=?,@net=?,@devops=?,@admin=?,@data=?,@hardware=?,@ai=?,@cloud=?,@comment=?', (usernameGlobal, passwordGlobal, email, fname, lname, dds, software, dev, network, devOps, admin, hardware, ai, cloud, comment))
          try:
             rows = cursor.fetchall()
             if len(rows) != 0:
@@ -147,10 +162,28 @@ def display():
     # Connect to the database and execute the query
     #conn = sqlite3.connect('your_database.db')
     #cursor = conn.cursor()
+    print('DISPLAY ROUTE')
+    userIdGlobal = 4
     cursor.execute('EXEC dbo.getBestManagerFit @managerID=?', (userIdGlobal))
 
     data = cursor.fetchall()
+    chart_data = {row[0]: row[4] for row in data}
+    print(chart_data)
+    html_file = open('namehere.html','w')
+    a = ['f','d','s','a']
+    x = -1
+    scope = vars()
+    data = ''
+    for i in a: #TIP: use a generator
+      scope['x']+=1
+      data += a[x]
+      data += '\n'
+    html_file.write(data)
+    html_file.close()
 
+
+    # Render the HTML template and pass the chart data
+    return render_template('display.html', chart_data=chart_data)
     # Render the HTML template and pass the data
     return render_template('display.html', data=data)
 

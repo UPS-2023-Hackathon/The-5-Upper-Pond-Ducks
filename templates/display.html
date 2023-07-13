@@ -1,8 +1,7 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
   <title>Data Display</title>
-  <!-- Your CSS styles and other head elements -->
 </head>
 <body>
   <h1>Data Display</h1>
@@ -26,5 +25,33 @@
     </tbody>
   </table>
 
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    ul.demo {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    </style>
+</head>
+<body>
+  <div class="left">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/United_Parcel_Service_logo_2014.svg/1718px-United_Parcel_Service_logo_2014.svg.png" alt="UPS Logo" width="70" height="70" align="left">
+  </div>
+  <br>
+  <br>
+  <ul>
+    {{chart_data}}
+  </ul>
+  <ul>
+    {% for item in chart_data %}
+        <li>{{item}}</li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
