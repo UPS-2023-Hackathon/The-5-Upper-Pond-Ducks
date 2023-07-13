@@ -9,28 +9,43 @@ con = odbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:5upducks.d
 cursor = con.cursor()
 
 # isAuth = False 
+usernameGlobal = ''
+passwordGlobal = ''
+userIdGlobal=0
 
 @app.route('/manager', methods=['GET', 'POST'])
 def manager():
    #  if isAuth == False:
    #     return render_template('login.html')
     if request.method == 'POST':
+            print('REQ')
             fname = request.form['fname']
+            print('REQ12222')
             lname = request.form['lname']
+            print('REQ1/2')
             email = request.form['email']
             sdg = request.form['sdg']
-            dds = request.form.get('Depart1')
-            software = request.form.get('Depart2')
-            network = request.form.get('Depart3')
-            dev = request.form.get('Depart4')
-            admin = request.form.get('Depart5')
-            ds = request.form.get('Depart6')
-            hardware = request.form.get('Depart7')
-            ai = request.form.get('Depart8')
-            cloud = request.form.get('Depart9')
+            # dds = request.form.get('Depart1')
+            # software = request.form.get('Depart2')
+            # network = request.form.get('Depart3')
+            # dev = request.form.get('Depart4')
+            # admin = request.form.get('Depart5')
+            # ds = request.form.get('Depart6')
+            # hardware = request.form.get('Depart7')
+            # ai = request.form.get('Depart8')
+            # cloud = request.form.get('Depart9')
+            dds = int(request.form.get('Depart1'))
+            software = int(request.form.get('Depart2'))
+            network = int(request.form.get('Depart3'))
+            dev = int(request.form.get('Depart4'))
+            admin = int(request.form.get('Depart5'))
+            ds = int(request.form.get('Depart6'))
+            hardware = int(request.form.get('Depart7'))
+            ai = int(request.form.get('Depart8'))
+            cloud = int(request.form.get('Depart9'))
             #Department = request.files['resume'] 
             #return "Form submitted successfully!"
-            cursor.execute('EXEC dbo.createManager @username=?, @password=?, @email=?, @first=?, @last=?, @SDG=?', (username, password, email, fname, lname, sdg))
+            cursor.execute('EXECUTE [dbo].[createManager] @username=?,@password=?,@email=?,@first=?,@last=?,@SDG=?,@DB=?,@dev=?,@net=?,@devops=?,@admin=?,@data=?,@hardware=?,@ai=?,@cloud=?', (usernameGlobal, passwordGlobal, email, fname, lname, sdg, dds, software, network, dev, admin, ds, hardware, ai, cloud))
             try:
                rows = cursor.fetchall()
                if len(rows) != 0:
@@ -46,6 +61,8 @@ def index():
       if request.method == 'POST':
          username = request.form['username']
          password = request.form['password']
+         usernameGlobal = username
+         passwordGlobal = password
 
          cursor.execute('EXEC dbo.InternLogin @username=?, @password=?', (username, password))
          isIntern = False
@@ -55,6 +72,10 @@ def index():
                print(rows)
                isIntern = True
                # isAuth = True
+               # cursor.execute('select userId FROM [dbo].[Login] where username=@username and password=@password', (usernameGlobal, passwordGlobal))
+               cursor.execute('SELECT userId FROM [dbo].[Login] WHERE username=? AND password=?', (usernameGlobal, passwordGlobal))
+               rowsTemp = cursor.fetchall()
+               userIdGlobal = rowsTemp[0]
                return render_template('intern.html')
          finally:
             cursor.execute('EXEC dbo.ManagerLogin @username=?, @password=?', (username, password))
@@ -81,22 +102,31 @@ def intern():
          lname = request.form['lname']
          email = request.form['email']
          resume = request.files['resume']
-         dds = request.form.get('Depart1')
-         software = request.form.get('Depart2')
-         network = request.form.get('Depart3')
-         dev = request.form.get('Depart4')
-         admin = request.form.get('Depart5')
-         ds = request.form.get('Depart6')
-         hardware = request.form.get('Depart7')
-         ai = request.form.get('Depart8')
-         cloud = request.form.get('Depart9')
+         # dds = request.form.get('Depart1')
+         # software = request.form.get('Depart2')
+         # network = request.form.get('Depart3')
+         # dev = request.form.get('Depart4')
+         # admin = request.form.get('Depart5')
+         # ds = request.form.get('Depart6')
+         # hardware = request.form.get('Depart7')
+         # ai = request.form.get('Depart8')
+         # cloud = request.form.get('Depart9')
+         dds = int(request.form.get('Depart1'))
+         software = int(request.form.get('Depart2'))
+         network = int(request.form.get('Depart3'))
+         dev = int(request.form.get('Depart4'))
+         admin = int(request.form.get('Depart5'))
+         ds = int(request.form.get('Depart6'))
+         hardware = int(request.form.get('Depart7'))
+         ai = int(request.form.get('Depart8'))
+         cloud = int(request.form.get('Depart9'))
          comment = request.form['comment']
 
         
         # Save the resume file
          resume.save('static/' + resume.filename)
         
-         cursor.execute('EXEC dbo.createIntern @username=?, @password=?, @email=?, @first=?, @last=?, @comment=?, @pdf=?', (username, password, email, fname, lname, comment, resume))
+         cursor.execute('EXECUTE [dbo].[createIntern] @username=?,@password=?,@email=?,@first=?,@last=?,@DB=?,@dev=?,@net=?,@devops=?,@admin=?,@data=?,@hardware=?,@ai=?,@cloud=?,@comment=?,@pdf=?', (usernameGlobal, passwordGlobal, email, fname, lname, comment, resume))
          try:
             rows = cursor.fetchall()
             if len(rows) != 0:
@@ -117,7 +147,7 @@ def display():
     # Connect to the database and execute the query
     #conn = sqlite3.connect('your_database.db')
     #cursor = conn.cursor()
-    cursor.execute('EXEC dbo.getBestManagerFit @managerID=?', (id))
+    cursor.execute('EXEC dbo.getBestManagerFit @managerID=?', (userIdGlobal))
 
     data = cursor.fetchall()
 
