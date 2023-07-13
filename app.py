@@ -8,8 +8,20 @@ app = Flask(__name__)
 con = odbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:5upducks.database.windows.net,1433;Database=5UPDucks;Uid=connorbell;Pwd=5upduck$;Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;')
 cursor = con.cursor()
 
-# isAuth = False
+# isAuth = False 
 
+@app.route('/manager', methods=['GET', 'POST'])
+def manager():
+   #  if isAuth == False:
+   #     return render_template('login.html')
+    if request.method == 'POST':
+            fname = request.form['fname']
+            lname = request.form['lname']
+            email = request.form['email']
+            #Department = request.files['resume'] 
+            #return "Form submitted successfully!"
+    return render_template('display.html')
+    
 @app.route('/', methods=['GET', 'POST'])
 def index():
    #  if isAuth == False:
@@ -39,7 +51,7 @@ def index():
             except:
                print("No rows2 in result, no valid logins")
       return render_template('login.html')
-    
+
 
 @app.route('/intern', methods=['GET', 'POST'])
 def intern():
@@ -81,20 +93,6 @@ def intern():
 def success():
     return render_template('ThankYouPage.html')
 
-@app.route('/manager', methods=['GET', 'POST'])
-def manager():
-   #  if isAuth == False:
-   #     return render_template('login.html')
-    if request.method == 'POST':
-            fname = request.form['fname']
-            lname = request.form['lname']
-            email = request.form['email']
-            Department = request.files['Department'] 
-            return "Form submitted successfully!"
-    return render_template('manager.html')
-
-    # Your other routes and code
-
 @app.route('/display')
 def display():
     # Connect to the database and execute the query
@@ -106,7 +104,7 @@ def display():
 
     # Render the HTML template and pass the data
     return render_template('display.html', data=data)
-    
+
     # Perform login verification here
     # Replace the following code with your login verification logic
     #if username == 'admin' and password == 'password' and button_type == "login-button1":
