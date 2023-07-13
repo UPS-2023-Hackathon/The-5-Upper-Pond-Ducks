@@ -18,6 +18,16 @@ def manager():
             fname = request.form['fname']
             lname = request.form['lname']
             email = request.form['email']
+            # sdg = request.form['sdg']
+            # dds= request.form['Depart1']
+            # software= request.form['Depart2']
+            # network= request.form['Depart3']
+            # dev= request.form['Depart4']
+            # admin= request.form['Depart5']
+            # ds= request.form['Depart6']
+            # hardware= request.form['Depart7']
+            # ai= request.form['Depart8']
+            # cloud= request.form['Depart9']
             #Department = request.files['resume'] 
             #return "Form submitted successfully!"
     return render_template('display.html')
@@ -63,21 +73,21 @@ def intern():
         lname = request.form['lname']
         email = request.form['email']
         resume = request.files['resume']
-        dds= request.form['Depart1']
-        software= request.form['Depart2']
-        network= request.form['Depart3']
-        dev= request.form['Depart4']
-        admin= request.form['Depart5']
-        ds= request.form['Depart6']
-        hardware= request.form['Depart7']
-        cloud= request.form['Depart8']
-
+      #   dds= request.form['Depart1']
+      #   software= request.form['Depart2']
+      #   network= request.form['Depart3']
+      #   dev= request.form['Depart4']
+      #   admin= request.form['Depart5']
+      #   ds= request.form['Depart6']
+      #   hardware= request.form['Depart7']
+      #   ai= request.form['Depart8']
+      #   cloud= request.form['Depart9']
         
         # Save the resume file
         resume.save('static/' + resume.filename)
         
         # Perform further processing with the form data and resume file here
-        return redirect(url_for('sucess'))
+        return redirect(url_for('success'))
         #return "Form submitted successfully!"
    # cursor.execute("SELECT * FROM dbo.demotable")
 

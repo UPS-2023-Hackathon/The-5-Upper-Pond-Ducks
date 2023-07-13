@@ -129,17 +129,6 @@
                     <label for="comments" class="form-label">Comments:</label>
                     <textarea class="form-control" id="comments" rows="3"></textarea>
                 </div>
-                <input type="submit" class="btn btn-warning"  color = "FFB500" value="Submit">                
-            </form>
-
-        </div>
-
-        <div class="right">
-            <div class="interests-container">
-
-                <h2>Personal Interests</h2>
-                <p><em>From the listed departments, please rank your interests from most interested to least interested:</em></p>
-
                 <div>
                     <label for="Depart1">Database (DDS)</label>
                     <select name="Depart1" required>
@@ -228,9 +217,8 @@
                         <option value="0">Not Interested</option>
                     </select>
                 </div>
-                
                 <div>
-                    <label for="Depart8">Cloud Computing</label>
+                    <label for="Depart8">AI</label>
                     <select name="Depart8" required>
                         <option value="6">Very Interested</option>
                         <option value="5">Highly Interested</option>
@@ -241,9 +229,32 @@
                         <option value="0">Not Interested</option>
                     </select>
                 </div>
+                <div>
+                    <label for="Depart9">Cloud Computing</label>
+                    <select name="Depart9" required>
+                        <option value="6">Very Interested</option>
+                        <option value="5">Highly Interested</option>
+                        <option value="4">Interested</option>
+                        <option value="3">Highly Neutral</option>
+                        <option value="2">Neutral</option>
+                        <option value="1">Less Interested</option>
+                        <option value="0">Not Interested</option>
+                    </select>
                 </div>
-                </div>
-                </div>
+                
+                <input type="submit" class="btn btn-warning"  color = "FFB500" value="Submit">                
+            </form>
+
+        </div>
+
+        <div class="right">
+            <div class="interests-container">
+
+                <h2>Personal Interests</h2>
+                <p><em>From the listed departments, please rank your interests from most interested to least interested:</em></p>
+            </div>
+        </div>
+    </div>
                 
                 <script src="{{ url_for('static', filename='bootstrap/js/bootstrap.min.js') }}"></script>
                 </body>
