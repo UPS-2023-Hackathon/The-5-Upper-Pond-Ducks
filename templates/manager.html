@@ -95,6 +95,10 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <a class="active" href="managerTop5.html">Results</a>
+        <a href="manager.html">Form</a>
+    </nav>
     <h1>Manager Portal</h1>
     <div class="container">
 
@@ -111,7 +115,7 @@
             <br>
             <br>
             <h2>Personal Information</h2>
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" action="/manager" enctype="multipart/form-data">
                 <label for="fname">First Name:</label>
                 <input type="text" id="fname" name="fname" required>
 
@@ -122,8 +126,8 @@
                 <input type="email" id="email" name="email" required>
 
                 <h4>Please upload your updated resume:</h4>
-                <label for="resume">Resume:</label>
-                <input type="file" id="resume" name="resume" required>
+                <label for="sdg">SDG:</label>
+                <input type="text" required>
                 <div class="mb-3">
                     <br>
                     <label for="comments" class="form-label">Comments:</label>

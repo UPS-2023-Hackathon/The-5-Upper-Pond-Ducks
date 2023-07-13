@@ -8,8 +8,45 @@ app = Flask(__name__)
 con = odbc.connect('Driver={ODBC Driver 17 for SQL Server};Server=tcp:5upducks.database.windows.net,1433;Database=5UPDucks;Uid=connorbell;Pwd=5upduck$;Encrypt=yes;TrustServerCertificate=yes;Connection Timeout=30;')
 cursor = con.cursor()
 
-# isAuth = False
+# isAuth = False 
 
+@app.route('/intern', methods=['GET', 'POST'])
+def intern():
+   # if isAuth == False:
+   #     return render_template('login.html')
+   #print('Request for index page received')
+   if request.method == 'POST':
+        fname = request.form['fname']
+        lname = request.form['lname']
+        email = request.form['email']
+        resume = request.files['resume']
+        
+        # Save the resume file
+        # resume.save(resume.filename)
+        
+        # Perform further processing with the form data and resume file here
+        
+        # return "Form submitted successfully!"
+   # cursor.execute("SELECT * FROM dbo.demotable")
+
+   # for row in cursor.fetchall():
+   #      print(row)
+    
+#return render_template('index.html')
+   return render_template('ThankYouPage.html')
+
+@app.route('/manager', methods=['GET', 'POST'])
+def manager():
+   #  if isAuth == False:
+   #     return render_template('login.html')
+    if request.method == 'POST':
+            fname = request.form['fname']
+            lname = request.form['lname']
+            email = request.form['email']
+            #Department = request.files['resume'] 
+            #return "Form submitted successfully!"
+    return render_template('managerTop5.html')
+    
 @app.route('/', methods=['GET', 'POST'])
 def index():
    #  if isAuth == False:
@@ -39,45 +76,9 @@ def index():
             except:
                print("No rows2 in result, no valid logins")
       return render_template('login.html')
-    
 
-@app.route('/intern', methods=['GET', 'POST'])
-def intern():
-   # if isAuth == False:
-   #     return render_template('login.html')
-   #print('Request for index page received')
-   if request.method == 'POST':
-        fname = request.form['fname']
-        lname = request.form['lname']
-        email = request.form['email']
-        resume = request.files['resume']
-        
-        # Save the resume file
-        resume.save(resume.filename)
-        
-        # Perform further processing with the form data and resume file here
-        
-        return "Form submitted successfully!"
-   # cursor.execute("SELECT * FROM dbo.demotable")
 
-   # for row in cursor.fetchall():
-   #      print(row)
-    
-#return render_template('index.html')
-   return render_template('ThankYouPage.html')
 
-@app.route('/manager', methods=['GET', 'POST'])
-def manager():
-   #  if isAuth == False:
-   #     return render_template('login.html')
-    if request.method == 'POST':
-            fname = request.form['fname']
-            lname = request.form['lname']
-            email = request.form['email']
-            Department = request.files['Department'] 
-            return "Form submitted successfully!"
-    return render_template('manager.html')
-    
     # Perform login verification here
     # Replace the following code with your login verification logic
     #if username == 'admin' and password == 'password' and button_type == "login-button1":
